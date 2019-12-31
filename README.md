@@ -1,21 +1,21 @@
-Swagger Documentation Provider for Apigility
+Swagger Documentation Provider for Laminas API Tools
 ============================================
 
-[![Build Status](https://travis-ci.org/zfcampus/zf-apigility-documentation-swagger.png)](https://travis-ci.org/zfcampus/zf-apigility-documentation-swagger)
+[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger.png)](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger)
 
 Introduction
 ------------
 
-This module provides Apigility the ability to show API documentation through a
+This module provides Laminas API Tools the ability to show API documentation through a
 [Swagger UI](http://swagger.wordnik.com/).
 
-The Swagger UI is immediately accessible after enabling this module at the URI path `/apigility/swagger`.
+The Swagger UI is immediately accessible after enabling this module at the URI path `/api-tools/swagger`.
 
-In addition to providing the HTML UI, this module also plugs into the main Apigility documentation
-resource (at the path `/apigility/documentation`) in order to allow returning a documentation
+In addition to providing the HTML UI, this module also plugs into the main Laminas API Tools documentation
+resource (at the path `/api-tools/documentation`) in order to allow returning a documentation
 payload in the `application/vnd.swagger+json` media type; this resource is what feeds the Swagger
 UI. You can access this representation by passing the media type `application/vnd.swagger+json` for
-the `Accept` header via the path `/apigility/documentation/:module/:service`.
+the `Accept` header via the path `/api-tools/documentation/:module/:service`.
 
 Installation
 ------------
@@ -23,14 +23,14 @@ Installation
 Run the following `composer` command:
 
 ```console
-$ composer require "zfcampus/zf-apigility-documentation-swagger:~1.0-dev"
+$ composer require "laminas-api-tools/api-tools-documentation-swagger:~1.0-dev"
 ```
 
 Alternately, manually add the following to your `composer.json`, in the `require` section:
 
 ```javascript
 "require": {
-    "zfcampus/zf-apigility-documentation-swagger": "~1.0-dev"
+    "laminas-api-tools/api-tools-documentation-swagger": "~1.0-dev"
 }
 ```
 
@@ -44,7 +44,7 @@ return array(
     /* ... */
     'modules' => array(
         /* ... */
-        'ZF\Apigility\Documentation\Swagger',
+        'Laminas\ApiTools\Documentation\Swagger',
     ),
     /* ... */
 );
@@ -53,11 +53,11 @@ return array(
 Routes
 ------
 
-### `/apigility/swagger`
+### `/api-tools/swagger`
 
 Shows the Swagger UI JavaScript application.
 
-### Assets: `/zf-apigility-documentation-swagger/`
+### Assets: `/api-tools-documentation-swagger/`
 
 Various CSS, images, and JavaScript libraries required to deliver the Swagger UI client
 application.
@@ -67,20 +67,20 @@ Configuration
 
 ### System Configuration
 
-The following is required to ensure the module works within a ZF2 and/or Apigility-enabled
+The following is required to ensure the module works within a Laminas and/or Laminas API Tools-enabled
 application:
 
 ```php
 'router' => array(
     'routes' => array(
-        'zf-apigility' => array(
+        'api-tools' => array(
             'child_routes' => array(
                 'swagger' => array(
-                    'type' => 'Zend\Mvc\Router\Http\Segment',
+                    'type' => 'Laminas\Mvc\Router\Http\Segment',
                     'options' => array(
                         'route'    => '/swagger',
                         'defaults' => array(
-                            'controller' => 'ZF\Apigility\Documentation\Swagger\SwaggerUi',
+                            'controller' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerUi',
                             'action'     => 'list',
                         ),
                     ),
@@ -104,17 +104,17 @@ application:
 ),
 'service_manager' => array(
     'factories' => array(
-        'ZF\Apigility\Documentation\Swagger\SwaggerViewStrategy' => 'ZF\Apigility\Documentation\Swagger\SwaggerViewStrategyFactory',
+        'Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategy' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategyFactory',
     ),
 ),
 'controllers' => array(
     'factories' => array(
-        'ZF\Apigility\Documentation\Swagger\SwaggerUi' => 'ZF\Apigility\Documentation\Swagger\SwaggerUiControllerFactory',
+        'Laminas\ApiTools\Documentation\Swagger\SwaggerUi' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerUiControllerFactory',
     ),
 ),
 'view_manager' => array(
     'template_path_stack' => array(
-        'zf-apigility-documentation-swagger' => __DIR__ . '/../view',
+        'api-tools-documentation-swagger' => __DIR__ . '/../view',
     ),
 ),
 'asset_manager' => array(
@@ -124,15 +124,15 @@ application:
         ),
     ),
 ),
-'zf-content-negotiation' => array(
+'api-tools-content-negotiation' => array(
     'accept_whitelist' => array(
-        'ZF\Apigility\Documentation\Controller' => array(
+        'Laminas\ApiTools\Documentation\Controller' => array(
             0 => 'application/vnd.swagger+json',
         ),
     ),
     'selectors' => array(
         'Documentation' => array(
-            'ZF\Apigility\Documentation\Swagger\ViewModel' => array(
+            'Laminas\ApiTools\Documentation\Swagger\ViewModel' => array(
                 'application/vnd.swagger+json',
             ),
         )
@@ -140,24 +140,24 @@ application:
 ),
 ```
 
-ZF2 Events
+Laminas Events
 ----------
 
 ### Listeners
 
-#### `ZF\Apigility\Documentation\Swagger\Module`
+#### `Laminas\ApiTools\Documentation\Swagger\Module`
 
 This listener is attached to the `MvcEvent::EVENT_RENDER` event at priority `100`.  Its purpose is
 to conditionally attach a view strategy to the view system in cases where the controller response is
-a `ZF\Apigility\Documentation\Swagger\ViewModel` view model (likely selected as the
+a `Laminas\ApiTools\Documentation\Swagger\ViewModel` view model (likely selected as the
 content-negotiated view model based off of `Accept` media types).
 
-ZF2 Services
+Laminas Services
 ------------
 
 ### View Models
 
-#### `ZF\Apigility\Documentation\Swagger\ViewModel`
+#### `Laminas\ApiTools\Documentation\Swagger\ViewModel`
 
-This view model is responsible for translating the available `ZF\Apigility\Documentation` models
+This view model is responsible for translating the available `Laminas\ApiTools\Documentation` models
 into Swagger-specific models, and further casting them to arrays for later rendering as JSON.
