@@ -1,20 +1,22 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Apigility\Documentation\Swagger;
+namespace LaminasTest\ApiTools\Documentation\Swagger;
 
+use Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategy;
+use Laminas\ApiTools\Documentation\Swagger\ViewModel;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
+use Laminas\Http\Response as HttpResponse;
+use Laminas\Stdlib\Response as StdlibResponse;
+use Laminas\View\Renderer\JsonRenderer;
+use Laminas\View\ViewEvent;
 use PHPUnit\Framework\TestCase;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\Test\EventListenerIntrospectionTrait;
-use Zend\Http\Response as HttpResponse;
-use Zend\Stdlib\Response as StdlibResponse;
-use Zend\View\Renderer\JsonRenderer;
-use Zend\View\ViewEvent;
-use ZF\Apigility\Documentation\Swagger\SwaggerViewStrategy;
-use ZF\Apigility\Documentation\Swagger\ViewModel;
 
 class SwaggerViewStrategyTest extends TestCase
 {

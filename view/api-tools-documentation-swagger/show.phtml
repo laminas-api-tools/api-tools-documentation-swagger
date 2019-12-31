@@ -1,4 +1,4 @@
-<?php $base = $this->basePath() . '/zf-apigility-documentation-swagger/'; ?>
+<?php $base = $this->basePath() . '/api-tools-documentation-swagger/'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +46,7 @@
 
 				var acceptHeader = {
 					apply: function (obj, authorizations) {
-						if (obj.url.match(/<?= preg_quote($this->url('zf-apigility/documentation', array('api' => null)), '/') ?>/)) {
+						if (obj.url.match(/<?= preg_quote($this->url('api-tools/documentation', array('api' => null)), '/') ?>/)) {
 						obj.headers['Accept'] = 'application/vnd.swagger+json';
 						obj.headers['accept'] = 'application/vnd.swagger+json';
 						obj.headers['documentation-accept-header'] = 'application/vnd.swagger+json';
@@ -56,7 +56,7 @@
 			};
 
 			window.swaggerUi = new SwaggerUi({
-				url: "<?php echo $this->url('zf-apigility/documentation', array('api' => $this->api)) ?>",
+				url: "<?php echo $this->url('api-tools/documentation', array('api' => $this->api)) ?>",
 				dom_id: "swagger-ui-container",
 				supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
 				authorizations: {"documentation-accept-header": acceptHeader},

@@ -1,12 +1,14 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger\Model;
+namespace Laminas\ApiTools\Documentation\Swagger\Model;
 
-use ZF\Apigility\Documentation\Swagger\Exception\UnmatchedTypeException;
+use Laminas\ApiTools\Documentation\Swagger\Exception\UnmatchedTypeException;
 
 class ObjectType implements TypeInterface
 {

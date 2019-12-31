@@ -1,20 +1,22 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2018 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZFTest\Apigility\Documentation\Swagger;
+namespace LaminasTest\ApiTools\Documentation\Swagger;
 
+use Laminas\ApiTools\Configuration\ModuleUtils;
+use Laminas\ApiTools\Documentation\ApiFactory;
+use Laminas\ApiTools\Documentation\Swagger\SwaggerUiController;
+use Laminas\ApiTools\Documentation\Swagger\SwaggerUiControllerFactory;
+use Laminas\ApiTools\Provider\ApiToolsProviderInterface;
+use Laminas\ModuleManager\ModuleManager;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
-use Zend\ModuleManager\ModuleManager;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\ServiceManager;
-use ZF\Apigility\Documentation\ApiFactory;
-use ZF\Apigility\Documentation\Swagger\SwaggerUiController;
-use ZF\Apigility\Documentation\Swagger\SwaggerUiControllerFactory;
-use ZF\Apigility\Provider\ApigilityProviderInterface;
-use ZF\Configuration\ModuleUtils;
 
 class SwaggerUiControllerFactoryTest extends TestCase
 {
@@ -35,7 +37,7 @@ class SwaggerUiControllerFactoryTest extends TestCase
     }
 
     /**
-     * @expectedException \Zend\ServiceManager\Exception\ServiceNotCreatedException
+     * @expectedException \Laminas\ServiceManager\Exception\ServiceNotCreatedException
      */
     public function testExceptionThrownOnMissingApiCreatorClass()
     {
@@ -46,7 +48,7 @@ class SwaggerUiControllerFactoryTest extends TestCase
 
     public function testCreatesServiceWithDefaults()
     {
-        $mockModule = $this->prophesize(ApigilityProviderInterface::class)->reveal();
+        $mockModule = $this->prophesize(ApiToolsProviderInterface::class)->reveal();
 
         $moduleManager = $this->prophesize(ModuleManager::class);
         $moduleManager->getModules()->willReturn(['Test']);

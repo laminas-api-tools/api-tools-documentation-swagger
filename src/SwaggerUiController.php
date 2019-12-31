@@ -1,14 +1,16 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger;
+namespace Laminas\ApiTools\Documentation\Swagger;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use ZF\Apigility\Documentation\ApiFactory;
+use Laminas\ApiTools\Documentation\ApiFactory;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class SwaggerUiController extends AbstractActionController
 {
@@ -35,7 +37,7 @@ class SwaggerUiController extends AbstractActionController
         $apis = $this->apiFactory->createApiList();
 
         $viewModel = new ViewModel(['apis' => $apis]);
-        $viewModel->setTemplate('zf-apigility-documentation-swagger/list');
+        $viewModel->setTemplate('api-tools-documentation-swagger/list');
         return $viewModel;
     }
 
@@ -49,7 +51,7 @@ class SwaggerUiController extends AbstractActionController
         $api = $this->params()->fromRoute('api');
 
         $viewModel = new ViewModel(['api' => $api]);
-        $viewModel->setTemplate('zf-apigility-documentation-swagger/show');
+        $viewModel->setTemplate('api-tools-documentation-swagger/show');
         $viewModel->setTerminal(true);
         return $viewModel;
     }

@@ -1,16 +1,17 @@
 <?php
 
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2018 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger;
+namespace Laminas\ApiTools\Documentation\Swagger;
 
-use ZF\Apigility\Documentation\Field;
-use ZF\Apigility\Documentation\Operation;
-use ZF\Apigility\Documentation\Service as BaseService;
-use ZF\Apigility\Documentation\Swagger\Model\ModelGenerator;
+use Laminas\ApiTools\Documentation\Field;
+use Laminas\ApiTools\Documentation\Operation;
+use Laminas\ApiTools\Documentation\Service as BaseService;
+use Laminas\ApiTools\Documentation\Swagger\Model\ModelGenerator;
 
 class Service extends BaseService
 {
