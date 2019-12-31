@@ -1,31 +1,33 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger;
+namespace Laminas\ApiTools\Documentation\Swagger;
 
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class SwaggerUiControllerFactory implements FactoryInterface
 {
     /**
      * @param ServiceLocatorInterface $controllers
      * @return SwaggerUiController
-     * @throws ServiceNotCreatedException if the ZF\Apigility\Documentation\ApiFactory service is missing
+     * @throws ServiceNotCreatedException if the Laminas\ApiTools\Documentation\ApiFactory service is missing
      */
     public function createService(ServiceLocatorInterface $controllers)
     {
         $services = $controllers->getServiceLocator();
-        if (!$services->has('ZF\Apigility\Documentation\ApiFactory')) {
+        if (!$services->has('Laminas\ApiTools\Documentation\ApiFactory')) {
             throw new ServiceNotCreatedException(sprintf(
-                '%s\SwaggerUiController requires the service ZF\Apigility\Documentation\ApiFactory, which was not found',
+                '%s\SwaggerUiController requires the service Laminas\ApiTools\Documentation\ApiFactory, which was not found',
                 __NAMESPACE__
             ));
         }
-        return new SwaggerUiController($services->get('ZF\Apigility\Documentation\ApiFactory'));
+        return new SwaggerUiController($services->get('Laminas\ApiTools\Documentation\ApiFactory'));
     }
 }
