@@ -1,5 +1,5 @@
-Swagger documentation provider for Apigility
+Swagger documentation provider for Laminas API Tools
 ============================================
 
-[![Build Status](https://travis-ci.org/zfcampus/zf-apigility-documentation-swagger.png)](https://travis-ci.org/zfcampus/zf-apigility-documentation-swagger)
+[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger.png)](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger)
 

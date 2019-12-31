@@ -1,22 +1,25 @@
 {
-    "name": "zfcampus/zf-apigility-documentation-swagger",
-    "description": "Apigility API Swagger documentation module",
-    "type": "library",
+    "name": "laminas-api-tools/api-tools-documentation-swagger",
+    "description": "Laminas API Tools API Swagger documentation module",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
-        "zend",
+        "laminas",
+        "api-tools",
         "module",
-        "apigiltiy",
         "documentation",
         "swagger"
     ],
-    "homepage": "http://apigility.org/",
+    "homepage": "https://api-tools.getlaminas.org",
     "support": {
-        "email": "apigility-users@zend.com",
-        "irc": "irc://irc.freenode.net/apigility",
-        "source": "https://github.com/zfcampus/zf-apigility-documentation-swagger",
-        "issues": "https://github.com/zfcampus/zf-apigility-documentation-swagger/issues"
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "issues": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/issues",
+        "source": "https://github.com/laminas-api-tools/api-tools-documentation-swagger",
+        "rss": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -25,18 +28,22 @@
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zendframework": "~2.3"
+        "laminas/laminas": "~2.3",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "*@dev"
     },
     "autoload": {
         "psr-4": {
-            "ZF\\Apigility\\Documentation\\Swagger\\": "src/",
-            "ZFTest\\Apigility\\Documentation\\Swagger\\": "test/"
+            "Laminas\\ApiTools\\Documentation\\Swagger\\": "src/",
+            "LaminasTest\\ApiTools\\Documentation\\Swagger\\": "test/"
         },
         "classmap": [
             "Module.php"
         ]
+    },
+    "replace": {
+        "zfcampus/zf-apigility-documentation-swagger": "self.version"
     }
 }
