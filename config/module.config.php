@@ -1,20 +1,22 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
 return array(
     'router' => array(
         'routes' => array(
-            'zf-apigility' => array(
+            'api-tools' => array(
                 'child_routes' => array(
                     'swagger' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Segment',
+                        'type' => 'Laminas\Mvc\Router\Http\Segment',
                         'options' => array(
                             'route'    => '/swagger',
                             'defaults' => array(
-                                'controller' => 'ZF\Apigility\Documentation\Swagger\SwaggerUi',
+                                'controller' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerUi',
                                 'action'     => 'list',
                             ),
                         ),
@@ -39,19 +41,19 @@ return array(
 
     'service_manager' => array(
         'factories' => array(
-            'ZF\Apigility\Documentation\Swagger\SwaggerViewStrategy' => 'ZF\Apigility\Documentation\Swagger\SwaggerViewStrategyFactory',
+            'Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategy' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategyFactory',
         ),
     ),
 
     'controllers' => array(
         'factories' => array(
-            'ZF\Apigility\Documentation\Swagger\SwaggerUi' => 'ZF\Apigility\Documentation\Swagger\SwaggerUiControllerFactory',
+            'Laminas\ApiTools\Documentation\Swagger\SwaggerUi' => 'Laminas\ApiTools\Documentation\Swagger\SwaggerUiControllerFactory',
         ),
     ),
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'zf-apigility-documentation-swagger' => __DIR__ . '/../view',
+            'api-tools-documentation-swagger' => __DIR__ . '/../view',
         ),
     ),
 
@@ -63,15 +65,15 @@ return array(
         ),
     ),
 
-    'zf-content-negotiation' => array(
+    'api-tools-content-negotiation' => array(
         'accept_whitelist' => array(
-            'ZF\Apigility\Documentation\Controller' => array(
+            'Laminas\ApiTools\Documentation\Controller' => array(
                 0 => 'application/vnd.swagger+json',
             ),
         ),
         'selectors' => array(
             'Documentation' => array(
-                'ZF\Apigility\Documentation\Swagger\ViewModel' => array(
+                'Laminas\ApiTools\Documentation\Swagger\ViewModel' => array(
                     'application/vnd.swagger+json',
                 ),
             )
