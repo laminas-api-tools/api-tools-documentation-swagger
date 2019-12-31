@@ -1,16 +1,18 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger;
+namespace Laminas\ApiTools\Documentation\Swagger;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use ZF\Apigility\Documentation\ApiFactory;
+use Laminas\ApiTools\Documentation\ApiFactory;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class SwaggerUiControllerFactory implements FactoryInterface
 {
@@ -25,7 +27,9 @@ class SwaggerUiControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        if (! $container->has(ApiFactory::class)) {
+        if (! $container->has(ApiFactory::class)
+            && ! $container->has(\ZF\Apigility\Documentation\ApiFactory::class)
+        ) {
             throw new ServiceNotCreatedException(sprintf(
                 '%s requires the service %s, which was not found',
                 SwaggerUiController::class,
@@ -33,7 +37,7 @@ class SwaggerUiControllerFactory implements FactoryInterface
             ));
         }
 
-        return new SwaggerUiController($container->get(ApiFactory::class));
+        return new SwaggerUiController($container->has(ApiFactory::class) ? $container->get(ApiFactory::class) : $container->get(\ZF\Apigility\Documentation\ApiFactory::class));
     }
 
     /**
