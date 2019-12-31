@@ -1,15 +1,17 @@
 <?php
+
 /**
- * @license   http://opensource.org/licenses/BSD-3-Clause BSD-3-Clause
- * @copyright Copyright (c) 2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
+ * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZF\Apigility\Documentation\Swagger;
+namespace Laminas\ApiTools\Documentation\Swagger;
 
 return [
     'router' => [
         'routes' => [
-            'zf-apigility' => [
+            'api-tools' => [
                 'child_routes' => [
                     'swagger' => [
                         'type' => 'segment',
@@ -40,12 +42,20 @@ return [
     ],
 
     'service_manager' => [
+        // Legacy Zend Framework aliases
+        'aliases' => [
+            \ZF\Apigility\Documentation\Swagger\SwaggerViewStrategy::class => SwaggerViewStrategy::class,
+        ],
         'factories' => [
             SwaggerViewStrategy::class => SwaggerViewStrategyFactory::class,
         ],
     ],
 
     'controllers' => [
+        // Legacy Zend Framework aliases
+        'aliases' => [
+            \ZF\Apigility\Documentation\Swagger\SwaggerUi::class => SwaggerUi::class,
+        ],
         'factories' => [
             SwaggerUi::class => SwaggerUiControllerFactory::class,
         ],
@@ -53,7 +63,7 @@ return [
 
     'view_manager' => [
         'template_path_stack' => [
-            'zf-apigility-documentation-swagger' => __DIR__ . '/../view',
+            'api-tools-documentation-swagger' => __DIR__ . '/../view',
         ],
     ],
 
@@ -65,9 +75,9 @@ return [
         ],
     ],
 
-    'zf-content-negotiation' => [
+    'api-tools-content-negotiation' => [
         'accept_whitelist' => [
-            'ZF\Apigility\Documentation\Controller' => [
+            'Laminas\ApiTools\Documentation\Controller' => [
                 0 => 'application/vnd.swagger+json',
             ],
         ],
