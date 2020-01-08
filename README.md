@@ -1,6 +1,6 @@
 # Swagger Documentation Provider for Laminas API Tools
 
-[![Build Status](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger.svg?branch=master)](https://travis-ci.org/laminas-api-tools/api-tools-documentation-swagger)
+[![Build Status](https://travis-ci.com/laminas-api-tools/api-tools-documentation-swagger.svg?branch=master)](https://travis-ci.com/laminas-api-tools/api-tools-documentation-swagger)
 [![Coverage Status](https://coveralls.io/repos/github/laminas-api-tools/api-tools-documentation-swagger/badge.svg?branch=master)](https://coveralls.io/github/laminas-api-tools/api-tools-documentation-swagger?branch=master)
 
 ## Introduction
