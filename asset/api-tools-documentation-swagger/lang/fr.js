@@ -47,7 +47,7 @@ window.SwaggerTranslator.learn({
     "Can't read from server.  It may not have the appropriate access-control-origin settings.":"Impossible de lire à partir du serveur. Il se peut que les réglages access-control-origin ne soient pas appropriés.",
     "Please specify the protocol for":"Veuillez spécifier un protocole pour",
     "Can't read swagger JSON from":"Impossible de lire le JSON swagger à partir de",
-    "Finished Loading Resource Information. Rendering Swagger UI":"Chargement des information terminé. Affichage de Swagger UI",
+    "Finished Loading Resource Information. Rendering Swagger UI":"Chargement des informations terminé. Affichage de Swagger UI",
     "Unable to read api":"Impossible de lire l'api",
     "from path":"à partir du chemin",
     "server returned":"réponse du serveur"
