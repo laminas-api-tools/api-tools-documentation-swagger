@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.3.1 - TBD
+## 1.3.1 - 2020-04-01
 
 ### Added
 
@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Provides updates to address [security advisory LP-2020-02](https://getlaminas.org/security/advisory/LP-2020-02).
 
 ## 1.3.0 - 2018-05-07
 
