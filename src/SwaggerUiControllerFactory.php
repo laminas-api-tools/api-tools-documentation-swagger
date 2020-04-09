@@ -37,7 +37,11 @@ class SwaggerUiControllerFactory implements FactoryInterface
             ));
         }
 
-        return new SwaggerUiController($container->has(ApiFactory::class) ? $container->get(ApiFactory::class) : $container->get(\ZF\Apigility\Documentation\ApiFactory::class));
+        $apiFactory = $container->has(ApiFactory::class)
+            ? $container->get(ApiFactory::class)
+            : $container->get(\ZF\Apigility\Documentation\ApiFactory::class);
+
+        return new SwaggerUiController($apiFactory);
     }
 
     /**
