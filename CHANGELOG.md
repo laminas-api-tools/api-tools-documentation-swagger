@@ -2,27 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.3.2 - TBD
+## 1.3.2 - 2020-09-10
 
-### Added
 
-- Nothing.
+-----
 
-### Changed
+### Release Notes for [1.3.2](https://github.com/laminas-api-tools/api-tools-documentation-swagger/milestone/1)
 
-- Nothing.
 
-### Deprecated
 
-- Nothing.
+### 1.3.2
 
-### Removed
+- Total issues resolved: **0**
+- Total pull requests resolved: **1**
+- Total contributors: **1**
 
-- Nothing.
+#### Enhancement
 
-### Fixed
-
-- Nothing.
+ - [13: Fix tests](https://github.com/laminas-api-tools/api-tools-documentation-swagger/pull/13) thanks to @alexdenvir
 
 ## 1.3.1 - 2020-04-01
 
