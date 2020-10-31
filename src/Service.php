@@ -67,11 +67,16 @@ class Service extends BaseService
      */
     private function getPaths()
     {
+        // get the Server base path
+        $base = str_replace("index.php", "", $_SERVER['PHP_SELF']);
         $route = $this->getRouteWithReplacements();
         if ($this->isRestService()) {
             return $this->getRestPaths($route);
         }
-        return $this->getOtherPaths($route);
+        // Delete the ending index.php
+        $sin = str_replace("/", "", $route);
+        $ret = $base . $sin;
+        return $this->getOtherPaths($sin);
     }
 
     /**
