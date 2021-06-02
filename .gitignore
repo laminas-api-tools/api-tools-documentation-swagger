@@ -1,7 +1,5 @@
-/.idea/
 /.phpcs-cache
 /clover.xml
 /coveralls-upload.json
-/nbproject/
 /phpunit.xml
 /vendor/
