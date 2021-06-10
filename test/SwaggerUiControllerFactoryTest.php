@@ -23,17 +23,17 @@ class SwaggerUiControllerFactoryTest extends TestCase
     protected function setUp(): void
     {
         $this->factory  = new SwaggerUiControllerFactory();
-        $this->services = $services = new ServiceManager();
+        $this->services = new ServiceManager();
     }
 
-    public function testExceptionThrownOnMissingApiCreatorClass()
+    public function testExceptionThrownOnMissingApiCreatorClass(): void
     {
         $smFactory = $this->factory;
         $this->expectException(ServiceNotCreatedException::class);
         $smFactory($this->services, SwaggerUiController::class);
     }
 
-    public function testCreatesServiceWithDefaults()
+    public function testCreatesServiceWithDefaults(): void
     {
         $mockModule = $this->createMock(ApiToolsProviderInterface::class);
 

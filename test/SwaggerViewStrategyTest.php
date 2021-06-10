@@ -26,7 +26,7 @@ class SwaggerViewStrategyTest extends TestCase
         $this->strategy->attach($this->events);
     }
 
-    public function testStrategyAttachesToViewEventsAtPriority200()
+    public function testStrategyAttachesToViewEventsAtPriority200(): void
     {
         $this->assertListenerAtPriority(
             [$this->strategy, 'selectRenderer'],

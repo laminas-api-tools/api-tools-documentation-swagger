@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+  <file src="config/module.config.php">
+    <UndefinedClass occurrences="4">
+      <code>SwaggerUi</code>
+      <code>SwaggerUi</code>
+      <code>SwaggerUi</code>
+      <code>\ZF\Apigility\Documentation\Swagger\SwaggerUi</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Api.php">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>Api</code>
+      <code>Api</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Model/ArrayType.php">
+    <MixedArrayAccess occurrences="1">
+      <code>$target[0]</code>
+    </MixedArrayAccess>
+  </file>
+  <file src="src/Model/ModelGenerator.php">
+    <MixedAssignment occurrences="1">
+      <code>$target</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Model/ObjectType.php">
+    <MissingClosureParamType occurrences="2">
+      <code>$key</code>
+      <code>$types</code>
+    </MissingClosureParamType>
+    <MixedArgument occurrences="2">
+      <code>$target</code>
+      <code>$types</code>
+    </MixedArgument>
+    <MixedArrayOffset occurrences="1">
+      <code>[$key =&gt; $this-&gt;modelGenerator-&gt;generateType($target-&gt;$key)]</code>
+    </MixedArrayOffset>
+    <MixedPropertyFetch occurrences="1">
+      <code>$target-&gt;$key</code>
+    </MixedPropertyFetch>
+  </file>
+  <file src="src/Module.php">
+    <MixedAssignment occurrences="2">
+      <code>$events</code>
+      <code>$view</code>
+    </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
+      <code>attach</code>
+      <code>getEventManager</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="1">
+      <code>include __DIR__ . '/../config/module.config.php'</code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Service.php">
+    <MixedArgument occurrences="4">
+      <code>$firstPostDescription</code>
+      <code>$operation</code>
+      <code>$operation</code>
+      <code>$operation</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="2">
+      <code>$responseStatusCode['code']</code>
+      <code>$responseStatusCode['message']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="5">
+      <code>$firstPostDescription</code>
+      <code>$operation</code>
+      <code>$operation</code>
+      <code>$operation</code>
+      <code>$responseStatusCode</code>
+    </MixedAssignment>
+    <PropertyNotSetInConstructor occurrences="10">
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+      <code>Service</code>
+    </PropertyNotSetInConstructor>
+    <RedundantCondition occurrences="1">
+      <code>method_exists($field, 'getFieldType')</code>
+    </RedundantCondition>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_array($entityOperations)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/SwaggerUiController.php">
+    <MixedAssignment occurrences="1">
+      <code>$api</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>fromRoute</code>
+    </MixedMethodCall>
+    <PropertyNotSetInConstructor occurrences="5">
+      <code>SwaggerUiController</code>
+      <code>SwaggerUiController</code>
+      <code>SwaggerUiController</code>
+      <code>SwaggerUiController</code>
+      <code>SwaggerUiController</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/SwaggerUiControllerFactory.php">
+    <DeprecatedInterface occurrences="1">
+      <code>SwaggerUiControllerFactory</code>
+    </DeprecatedInterface>
+    <MixedArgument occurrences="2">
+      <code>$apiFactory</code>
+      <code>$container</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$apiFactory</code>
+      <code>$container</code>
+    </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$controllers</code>
+    </ParamNameMismatch>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getServiceLocator</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="src/SwaggerViewStrategy.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>$this-&gt;model instanceof ViewModel</code>
+    </DocblockTypeContradiction>
+    <MixedAssignment occurrences="1">
+      <code>$headers</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>addHeaderLine</code>
+    </MixedMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$response</code>
+    </PossiblyNullArgument>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$model</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/SwaggerViewStrategyFactory.php">
+    <MixedArgument occurrences="1">
+      <code>$container-&gt;get('ViewJsonRenderer')</code>
+    </MixedArgument>
+  </file>
+  <file src="src/ViewModel.php">
+    <ImplementedReturnTypeMismatch occurrences="1">
+      <code>array|Traversable|ArrayAccess</code>
+    </ImplementedReturnTypeMismatch>
+    <InvalidArgument occurrences="1">
+      <code>$this-&gt;variables['type'] || ! $this-&gt;variables-&gt;offsetExists('type')</code>
+    </InvalidArgument>
+    <MixedArgument occurrences="1">
+      <code>$this-&gt;variables['documentation']</code>
+    </MixedArgument>
+    <MixedInferredReturnType occurrences="1">
+      <code>array|Traversable|ArrayAccess</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$this-&gt;variables['documentation']</code>
+    </MixedReturnStatement>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>offsetExists</code>
+    </PossiblyInvalidMethodCall>
+  </file>
+  <file src="test/ApiTest.php">
+    <InvalidArrayOffset occurrences="6">
+      <code>$this-&gt;fixture['definitions']</code>
+      <code>$this-&gt;fixture['info']</code>
+      <code>$this-&gt;fixture['paths']</code>
+      <code>$this-&gt;fixture['paths']</code>
+      <code>$this-&gt;fixture['paths']</code>
+      <code>$this-&gt;fixture['swagger']</code>
+    </InvalidArrayOffset>
+    <MissingClosureParamType occurrences="12">
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$message</code>
+      <code>$message</code>
+      <code>$message</code>
+      <code>$message</code>
+    </MissingClosureParamType>
+    <MixedArgument occurrences="18">
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$actual</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$expected</code>
+      <code>$expectedOperationValue</code>
+      <code>$expectedPath</code>
+      <code>$expectedValue</code>
+      <code>$message</code>
+      <code>$message</code>
+      <code>$message</code>
+      <code>$message</code>
+      <code>$paths[$expectedPath]</code>
+      <code>$this-&gt;fixture['paths']</code>
+      <code>$this-&gt;result['paths']</code>
+    </MixedArgument>
+    <MixedArrayAccess occurrences="3">
+      <code>$expectedOperationValue[$field]</code>
+      <code>$paths[$expectedPathKey]</code>
+      <code>$paths[$expectedPath]</code>
+    </MixedArrayAccess>
+    <MixedArrayOffset occurrences="2">
+      <code>$paths[$expectedPathKey]</code>
+      <code>$paths[$expectedPath]</code>
+    </MixedArrayOffset>
+    <MixedAssignment occurrences="13">
+      <code>$actual</code>
+      <code>$expected</code>
+      <code>$expectedOperationKey</code>
+      <code>$expectedOperationValue</code>
+      <code>$expectedPath</code>
+      <code>$expectedPathKey</code>
+      <code>$expectedPathValue</code>
+      <code>$expectedPaths</code>
+      <code>$expectedPaths</code>
+      <code>$expectedValue</code>
+      <code>$paths</code>
+      <code>$paths</code>
+      <code>$this-&gt;fixture</code>
+    </MixedAssignment>
+    <MixedOperand occurrences="2">
+      <code>$expectedOperationKey</code>
+      <code>$expectedPathKey</code>
+    </MixedOperand>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>assertNotNull</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="test/BaseApiFactoryTest.php">
+    <MixedAssignment occurrences="1">
+      <code>$expectedValue</code>
+    </MixedAssignment>
+    <UndefinedThisPropertyAssignment occurrences="1">
+      <code>$this-&gt;api</code>
+    </UndefinedThisPropertyAssignment>
+  </file>
+  <file src="test/ModelGeneratorTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$input</code>
+    </PossiblyNullArgument>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>assertNotNull</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="test/SwaggerUiControllerFactoryTest.php">
+    <UnnecessaryVarAnnotation occurrences="1">
+      <code>SwaggerUiControllerFactory</code>
+    </UnnecessaryVarAnnotation>
+  </file>
+  <file src="test/SwaggerViewStrategyTest.php">
+    <MixedArgument occurrences="2">
+      <code>$header-&gt;getFieldValue()</code>
+      <code>$this-&gt;events</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$renderer</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="8">
+      <code>injectResponse</code>
+      <code>injectResponse</code>
+      <code>injectResponse</code>
+      <code>selectRenderer</code>
+      <code>selectRenderer</code>
+      <code>selectRenderer</code>
+      <code>selectRenderer</code>
+      <code>selectRenderer</code>
+    </MixedMethodCall>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getFieldValue</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedMethod occurrences="1">
+      <code>getFieldValue</code>
+    </PossiblyUndefinedMethod>
+    <UndefinedThisPropertyAssignment occurrences="3">
+      <code>$this-&gt;events</code>
+      <code>$this-&gt;renderer</code>
+      <code>$this-&gt;strategy</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="8">
+      <code>$this-&gt;events</code>
+      <code>$this-&gt;renderer</code>
+      <code>$this-&gt;strategy</code>
+      <code>$this-&gt;strategy</code>
+      <code>$this-&gt;strategy</code>
+      <code>$this-&gt;strategy</code>
+      <code>$this-&gt;strategy</code>
+      <code>$this-&gt;strategy</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+</files>

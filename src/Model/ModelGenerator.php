@@ -36,7 +36,7 @@ class ModelGenerator
 
     /**
      * @param string $jsonInput
-     * @return array
+     * @return array|false
      * @throws UnmatchedTypeException If unable to match any given $target to a known type.
      */
     public function generate($jsonInput)
@@ -55,10 +55,10 @@ class ModelGenerator
 
     /**
      * @param mixed $target
-     * @return TypeInterface
+     * @return array
      * @throws UnmatchedTypeException If unable to match $target to a known type.
      */
-    public function generateType($target)
+    public function generateType($target): array
     {
         foreach ($this->types as $type) {
             if ($type->match($target)) {

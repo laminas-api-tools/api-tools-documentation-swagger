@@ -48,10 +48,7 @@ class Service extends BaseService
         ]);
     }
 
-    /**
-     * @return array
-     */
-    private function getTags()
+    private function getTags(): array
     {
         return [
             $this->cleanEmptyValues([
@@ -61,10 +58,7 @@ class Service extends BaseService
         ];
     }
 
-    /**
-     * @return array
-     */
-    private function getPaths()
+    private function getPaths(): array
     {
         $route = $this->getRouteWithReplacements();
         if ($this->isRestService()) {
@@ -73,10 +67,7 @@ class Service extends BaseService
         return $this->getOtherPaths($route);
     }
 
-    /**
-     * @return string
-     */
-    private function getRouteWithReplacements()
+    private function getRouteWithReplacements(): string
     {
         // routes and parameter mangling ([:foo] will become {foo}
         $search  = ['[', ']', '{/', '{:'];
@@ -84,19 +75,15 @@ class Service extends BaseService
         return str_replace($search, $replace, $this->service->route);
     }
 
-    /**
-     * @return bool
-     */
-    private function isRestService()
+    private function isRestService(): bool
     {
-        return $this->service->routeIdentifierName;
+        return ! empty($this->service->routeIdentifierName);
     }
 
     /**
-     * @param string $route
-     * @return array
+     * @psalm-return array<string, array>
      */
-    private function getRestPaths($route)
+    private function getRestPaths(string $route): array
     {
         $entityOperations     = $this->getEntityOperationsData($route);
         $collectionOperations = $this->getCollectionOperationsData($route);
@@ -112,32 +99,21 @@ class Service extends BaseService
         ];
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getOtherPaths($route)
+    /** @psalm-return array<string, array> */
+    private function getOtherPaths(string $route): array
     {
         $operations = $this->getOtherOperationsData($route);
         return [$route => $operations];
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getEntityOperationsData($route)
+    private function getEntityOperationsData(string $route): array
     {
         $urlParameters = $this->getURLParametersRequired($route);
         $operations    = $this->service->getEntityOperations();
         return $this->getOperationsData($operations, $urlParameters);
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getCollectionOperationsData($route)
+    private function getCollectionOperationsData(string $route): array
     {
         $urlParameters = $this->getURLParametersNotRequired($route);
         unset($urlParameters[$this->service->routeIdentifierName]);
@@ -145,11 +121,7 @@ class Service extends BaseService
         return $this->getOperationsData($operations, $urlParameters);
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getOtherOperationsData($route)
+    private function getOtherOperationsData(string $route): array
     {
         $urlParameters = $this->getURLParametersRequired($route);
         $operations    = $this->service->operations;
@@ -171,30 +143,17 @@ class Service extends BaseService
         return $operationsData;
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getURLParametersRequired($route)
+    private function getURLParametersRequired(string $route): array
     {
         return $this->getURLParameters($route, true);
     }
 
-    /**
-     * @param string $route
-     * @return array
-     */
-    private function getURLParametersNotRequired($route)
+    private function getURLParametersNotRequired(string $route): array
     {
         return $this->getURLParameters($route, false);
     }
 
-    /**
-     * @param string $route
-     * @param bool $required
-     * @return array
-     */
-    private function getURLParameters($route, $required)
+    private function getURLParameters(string $route, bool $required): array
     {
         // find all parameters in Swagger naming format
         preg_match_all('#{([\w\d_-]+)}#', $route, $parameterMatches);
@@ -214,10 +173,8 @@ class Service extends BaseService
         return $templateParameters;
     }
 
-    /**
-     * @return array
-     */
-    private function getPostPatchPutBodyParameter()
+    /** @psalm-return array<string, mixed> */
+    private function getPostPatchPutBodyParameter(): array
     {
         return [
             'in'       => 'body',
@@ -229,28 +186,17 @@ class Service extends BaseService
         ];
     }
 
-    /**
-     * @param string $method
-     * @return bool
-     */
-    private function isMethodPostPutOrPatch($method)
+    private function isMethodPostPutOrPatch(string $method): bool
     {
         return in_array(strtolower($method), ['post', 'put', 'patch']);
     }
 
-    /**
-     * @return string
-     */
-    private function getMethodFromOperation(Operation $operation)
+    private function getMethodFromOperation(Operation $operation): string
     {
         return strtolower($operation->getHttpMethod());
     }
 
-    /**
-     * @param array $parameters
-     * @return array
-     */
-    private function getPathOperation(Operation $operation, $parameters)
+    private function getPathOperation(Operation $operation, array $parameters): array
     {
         return $this->cleanEmptyValues([
             'tags'        => [$this->service->getName()],
@@ -261,10 +207,7 @@ class Service extends BaseService
         ]);
     }
 
-    /**
-     * @return array
-     */
-    private function getResponsesFromOperation(Operation $operation)
+    private function getResponsesFromOperation(Operation $operation): array
     {
         $responses           = [];
         $responseStatusCodes = $operation->getResponseStatusCodes();
@@ -279,22 +222,22 @@ class Service extends BaseService
     }
 
     /**
-     * @param int $code
-     * @return null|array If the return code is neither 200 or 201, returns null.
-     *     Otherwise, it retrieves the response description, passes it to the
-     *     model generator, and uses the returned value.
+     * @return null|array<array-key, mixed> If the return code is neither 200 or
+     *     201, returns null. Otherwise, it retrieves the response description,
+     *     passes it to the model generator, and uses the returned value.
      */
-    private function getResponseSchema(Operation $operation, $code)
+    private function getResponseSchema(Operation $operation, int $code): ?array
     {
         if ($code === 200 || $code === 201) {
-            return $this->modelGenerator->generate($operation->getResponseDescription());
+            $schema = $this->modelGenerator->generate($operation->getResponseDescription());
+
+            return $schema === false ? null : $schema;
         }
+
+        return null;
     }
 
-    /**
-     * @return array
-     */
-    private function getDefinitions()
+    private function getDefinitions(): array
     {
         if (! $this->serviceContainsPostPutOrPatchMethod()) {
             return [];
@@ -305,10 +248,7 @@ class Service extends BaseService
         return [$this->service->getName() => $model];
     }
 
-    /**
-     * @return bool
-     */
-    private function serviceContainsPostPutOrPatchMethod()
+    private function serviceContainsPostPutOrPatchMethod(): bool
     {
         foreach ($this->getAllOperations() as $operation) {
             $method = $this->getMethodFromOperation($operation);
@@ -319,10 +259,7 @@ class Service extends BaseService
         return false;
     }
 
-    /**
-     * @return array
-     */
-    private function getModelFromFields()
+    private function getModelFromFields(): array
     {
         $required = $properties = [];
 
@@ -344,10 +281,7 @@ class Service extends BaseService
         ]);
     }
 
-    /**
-     * @return array
-     */
-    private function getModelFromFirstPostDescription()
+    private function getModelFromFirstPostDescription(): array
     {
         $firstPostDescription = $this->getFirstPostRequestDescription();
         if (! $firstPostDescription) {
@@ -373,7 +307,8 @@ class Service extends BaseService
     }
 
     /**
-     * @return null|array
+     * @return Field|Field[]
+     * @psalm-return Field|array<array-key, Field>
      */
     private function getFieldsForDefinitions()
     {
@@ -385,10 +320,7 @@ class Service extends BaseService
         return $fields;
     }
 
-    /**
-     * @return array
-     */
-    private function getFieldProperties(Field $field)
+    private function getFieldProperties(Field $field): array
     {
         $type               = $this->getFieldType($field);
         $properties         = [];
@@ -400,20 +332,14 @@ class Service extends BaseService
         return $this->cleanEmptyValues($properties);
     }
 
-    /**
-     * @return string
-     */
-    private function getFieldType(Field $field)
+    private function getFieldType(Field $field): string
     {
         return method_exists($field, 'getFieldType') && ! empty($field->getFieldType())
             ? $field->getFieldType()
             : self::DEFAULT_TYPE;
     }
 
-    /**
-     * @return array
-     */
-    private function getAllOperations()
+    private function getAllOperations(): array
     {
         $entityOperations = $this->service->getEntityOperations();
         if (is_array($entityOperations)) {
@@ -423,10 +349,9 @@ class Service extends BaseService
     }
 
     /**
-     * @param array $data
      * @return array $data omitting empty values
      */
-    private function cleanEmptyValues(array $data)
+    private function cleanEmptyValues(array $data): array
     {
         return array_filter($data, function ($item) {
             return ! empty($item);

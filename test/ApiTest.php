@@ -52,29 +52,29 @@ class ApiTest extends BaseApiFactoryTest
         }
     }
 
-    public function testApiShouldBeCreated()
+    public function testApiShouldBeCreated(): void
     {
         $this->assertNotNull($this->api);
     }
 
-    public function testApiResultShouldHaveSwaggerVersion()
+    public function testApiResultShouldHaveSwaggerVersion(): void
     {
         $this->assertEquals($this->fixture['swagger'], $this->result['swagger']);
     }
 
-    public function testApiResultShouldHaveInfo()
+    public function testApiResultShouldHaveInfo(): void
     {
         $this->assertEquals($this->fixture['info'], $this->result['info']);
     }
 
-    public function testApiResultShouldHavePaths()
+    public function testApiResultShouldHavePaths(): void
     {
         $paths         = array_keys($this->result['paths']);
         $expectedPaths = array_keys($this->fixture['paths']);
         $this->assertEqualsArrays($expectedPaths, $paths);
     }
 
-    public function testApiResultShouldHavePathsWithMethods()
+    public function testApiResultShouldHavePathsWithMethods(): void
     {
         $expectedPaths = $this->fixture['paths'];
         $paths         = $this->result['paths'];
@@ -85,7 +85,7 @@ class ApiTest extends BaseApiFactoryTest
         }
     }
 
-    public function testApiResultShouldHavePathsWithDescription()
+    public function testApiResultShouldHavePathsWithDescription(): void
     {
         $test = $this;
         $this->assertAllFields('description', function ($expected, $actual, $message) use ($test) {
@@ -93,7 +93,7 @@ class ApiTest extends BaseApiFactoryTest
         });
     }
 
-    public function testApiResultShouldHavePathsWithProduces()
+    public function testApiResultShouldHavePathsWithProduces(): void
     {
         $test = $this;
         $this->assertAllFields('produces', function ($expected, $actual, $message) use ($test) {
@@ -101,7 +101,7 @@ class ApiTest extends BaseApiFactoryTest
         });
     }
 
-    public function testApiResultShouldHavePathsWithResponses()
+    public function testApiResultShouldHavePathsWithResponses(): void
     {
         $test = $this;
         $this->assertAllFields('responses', function ($expected, $actual, $message) use ($test) {
@@ -110,7 +110,7 @@ class ApiTest extends BaseApiFactoryTest
         });
     }
 
-    public function testApiResultShouldHavePathsWithParameters()
+    public function testApiResultShouldHavePathsWithParameters(): void
     {
         $test = $this;
         $this->assertAllFields('parameters', function ($expected, $actual, $message) use ($test) {
@@ -118,12 +118,12 @@ class ApiTest extends BaseApiFactoryTest
         });
     }
 
-    public function testApiResultShouldHaveDefinitions()
+    public function testApiResultShouldHaveDefinitions(): void
     {
         $this->assertEquals($this->fixture['definitions'], $this->result['definitions']);
     }
 
-    public function testApiResultShouldReturnsExpectedOutput()
+    public function testApiResultShouldReturnsExpectedOutput(): void
     {
         $result = $this->api->toArray();
         $this->assertFixture('swagger2.json', $result);

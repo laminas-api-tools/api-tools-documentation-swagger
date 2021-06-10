@@ -32,7 +32,7 @@ class ModelGeneratorTest extends TestCase
         ];
     }
 
-    public function testShouldBeCreated()
+    public function testShouldBeCreated(): void
     {
         $this->assertNotNull($this->modelGenerator);
     }
