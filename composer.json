@@ -28,7 +28,9 @@
         "laminas/laminas-coding-standard": "~2.2.0",
         "laminas/laminas-http": "^2.5.4",
         "laminas/laminas-stdlib": "^2.7.8 || ^3.0.1",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3",
+        "psalm/plugin-phpunit": "^0.16.0",
+        "vimeo/psalm": "^4.7"
     },
     "config": {
         "sort-packages": true
