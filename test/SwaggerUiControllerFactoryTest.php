@@ -20,7 +20,7 @@ class SwaggerUiControllerFactoryTest extends TestCase
     /** @var ServiceManager */
     protected $services;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->factory  = new SwaggerUiControllerFactory();
         $this->services = $services = new ServiceManager();
@@ -30,25 +30,23 @@ class SwaggerUiControllerFactoryTest extends TestCase
     {
         $smFactory = $this->factory;
         $this->expectException(ServiceNotCreatedException::class);
-        $factory = $smFactory($this->services, SwaggerUiController::class);
+        $smFactory($this->services, SwaggerUiController::class);
     }
 
     public function testCreatesServiceWithDefaults()
     {
-        $mockModule = $this->prophesize(ApiToolsProviderInterface::class)->reveal();
+        $mockModule = $this->createMock(ApiToolsProviderInterface::class);
 
-        $moduleManager = $this->prophesize(ModuleManager::class);
-        $moduleManager->getModules()->willReturn(['Test']);
-        $moduleManager->getModule('Test')->willReturn($mockModule);
-        $moduleUtils = $this->prophesize(ModuleUtils::class);
-        $moduleUtils
-            ->getModuleConfigPath('Test')
-            ->willReturn([]);
+        $moduleManager = $this->createMock(ModuleManager::class);
+        $moduleManager->method('getModules')->willReturn(['Test']);
+        $moduleManager->method('getModule')->with('Test')->willReturn($mockModule);
+        $moduleUtils = $this->createMock(ModuleUtils::class);
+        $moduleUtils->method('getModuleConfigPath')->with('Test')->willReturn([]);
 
         $apiFactory = new ApiFactory(
-            $moduleManager->reveal(),
+            $moduleManager,
             [],
-            $moduleUtils->reveal()
+            $moduleUtils
         );
 
         $this->services->setService(ApiFactory::class, $apiFactory);

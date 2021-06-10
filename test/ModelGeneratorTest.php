@@ -16,7 +16,7 @@ class ModelGeneratorTest extends TestCase
     /** @var ModelGenerator */
     protected $modelGenerator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->modelGenerator = new ModelGenerator();
     }

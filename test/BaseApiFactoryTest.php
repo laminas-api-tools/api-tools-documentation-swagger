@@ -19,23 +19,24 @@ abstract class BaseApiFactoryTest extends TestCase
     /** @var ApiFactory */
     protected $apiFactory;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $mockModule = $this->prophesize(ApiToolsProviderInterface::class)->reveal();
+        $mockModule = $this->createMock(ApiToolsProviderInterface::class);
 
-        $moduleManager = $this->prophesize(ModuleManager::class);
-        $moduleManager->getModules()->willReturn(['Test']);
-        $moduleManager->getModule('Test')->willReturn($mockModule);
+        $moduleManager = $this->createMock(ModuleManager::class);
+        $moduleManager->method('getModules')->willReturn(['Test']);
+        $moduleManager->method('getModule')->with('Test')->willReturn($mockModule);
 
-        $moduleUtils = $this->prophesize(ModuleUtils::class);
+        $moduleUtils = $this->createMock(ModuleUtils::class);
         $moduleUtils
-            ->getModuleConfigPath('Test')
+            ->method('getModuleConfigPath')
+            ->with('Test')
             ->willReturn(__DIR__ . '/TestAsset/module-config/module.config.php');
 
         $this->apiFactory = new ApiFactory(
-            $moduleManager->reveal(),
+            $moduleManager,
             include __DIR__ . '/TestAsset/module-config/module.config.php',
-            $moduleUtils->reveal()
+            $moduleUtils
         );
         $this->api        = new Api($this->apiFactory->createApi('Test', 1));
         parent::setUp();

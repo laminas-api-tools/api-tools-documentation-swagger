@@ -20,7 +20,7 @@ class ApiTest extends BaseApiFactoryTest
     /** @var array */
     protected $result;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->api     = new Api($this->apiFactory->createApi('Test', 1));
