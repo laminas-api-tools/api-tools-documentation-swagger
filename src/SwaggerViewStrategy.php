@@ -48,6 +48,9 @@ class SwaggerViewStrategy implements ListenerAggregateInterface
         return $this->renderer;
     }
 
+    /**
+     * @return void
+     */
     public function injectResponse(ViewEvent $e)
     {
         if (! $this->model instanceof ViewModel) {

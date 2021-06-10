@@ -18,7 +18,7 @@ class SwaggerViewStrategyTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->events   = new EventManager();
         $this->renderer = new JsonRenderer();
@@ -26,7 +26,7 @@ class SwaggerViewStrategyTest extends TestCase
         $this->strategy->attach($this->events);
     }
 
-    public function testStrategyAttachesToViewEventsAtPriority200()
+    public function testStrategyAttachesToViewEventsAtPriority200(): void
     {
         $this->assertListenerAtPriority(
             [$this->strategy, 'selectRenderer'],
@@ -76,7 +76,7 @@ class SwaggerViewStrategyTest extends TestCase
         $headers = $response->getHeaders();
         $this->assertTrue($headers->has('Content-Type'), 'No Content-Type header in HTTP response!');
         $header = $headers->get('Content-Type');
-        $this->assertContains('application/vnd.swagger+json', $header->getFieldValue());
+        $this->assertStringContainsString('application/vnd.swagger+json', $header->getFieldValue());
     }
 
     /**
