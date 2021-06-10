@@ -1,12 +1,8 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger;
+
+use Laminas\Mvc\MvcEvent;
 
 class Module
 {
@@ -26,7 +22,7 @@ class Module
      * Attaches the module's render listener to the application event
      * manager instance.
      *
-     * @param \Laminas\Mvc\MvcEvent $e
+     * @param MvcEvent $e
      * @return void
      */
     public function onBootstrap($e)
@@ -42,7 +38,7 @@ class Module
      * Attaches the SwaggerViewStrategy to the view event manager instance if
      * a Swagger view model is detected.
      *
-     * @param \Laminas\Mvc\MvcEvent $e
+     * @param MvcEvent $e
      * @return void
      */
     public function onRender($e)

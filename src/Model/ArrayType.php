@@ -1,15 +1,12 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger\Model;
+
+use function is_array;
 
 class ArrayType implements TypeInterface
 {
+    /** @var ModelGenerator */
     private $modelGenerator;
 
     public function __construct(ModelGenerator $modelGenerator)
@@ -31,7 +28,7 @@ class ArrayType implements TypeInterface
     public function generate($target)
     {
         return [
-            'type' => 'array',
+            'type'  => 'array',
             'items' => $this->modelGenerator->generateType($target[0]),
         ];
     }

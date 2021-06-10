@@ -1,26 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\Documentation\Swagger\Model;
 
 use Laminas\ApiTools\Documentation\Swagger\Model\ModelGenerator;
 use PHPUnit\Framework\TestCase;
 
+use function file_get_contents;
+use function json_decode;
+
 class ModelGeneratorTest extends TestCase
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $fixturesPath = __DIR__ . '/TestAsset/fixtures/models/';
 
-    /**
-     * @var ModelGenerator
-     */
+    /** @var ModelGenerator */
     protected $modelGenerator;
 
     public function setUp()
@@ -28,13 +21,14 @@ class ModelGeneratorTest extends TestCase
         $this->modelGenerator = new ModelGenerator();
     }
 
-    private function getFixtureData($inputFileName, $resultFileName)
+    /** @psalm-return array{0: string, 1: mixed} */
+    private function getFixtureData(string $inputFileName, string $resultFileName): array
     {
-        $inputPath = $this->fixturesPath . $inputFileName;
+        $inputPath  = $this->fixturesPath . $inputFileName;
         $resultPath = $this->fixturesPath . $resultFileName;
         return [
             file_get_contents($inputPath),
-            json_decode(file_get_contents($resultPath), true)
+            json_decode(file_get_contents($resultPath), true),
         ];
     }
 
@@ -43,38 +37,41 @@ class ModelGeneratorTest extends TestCase
         $this->assertNotNull($this->modelGenerator);
     }
 
-    public function generateInvalidInputDataProvider()
+    /** @psalm-return array<array-key, array{0: null|string}> */
+    public function generateInvalidInputDataProvider(): array
     {
         return [
             ['adfadfadf'],
             [''],
             [null],
-            ['{']
+            ['{'],
         ];
     }
 
     /**
      * @dataProvider generateInvalidInputDataProvider
      */
-    public function testShouldReturnsFalseWithAnInvalidJsonInput($input)
+    public function testShouldReturnsFalseWithAnInvalidJsonInput(?string $input): void
     {
         $swaggerModel = $this->modelGenerator->generate($input);
         $this->assertFalse($swaggerModel);
     }
 
-    public function generateDataProvider()
+    /** @psalm-return array<array-key, array{0: string, 1: mixed}> */
+    public function generateDataProvider(): array
     {
         return [
             $this->getFixtureData('types-input.json', 'types-result.json'),
             $this->getFixtureData('nested-input.json', 'nested-result.json'),
-            $this->getFixtureData('hal-input.json', 'hal-result.json')
+            $this->getFixtureData('hal-input.json', 'hal-result.json'),
         ];
     }
 
     /**
      * @dataProvider generateDataProvider
+     * @param mixed $expectedModel
      */
-    public function testShouldGenerateASwaggerModel($input, $expectedModel)
+    public function testShouldGenerateASwaggerModel(string $input, $expectedModel): void
     {
         $swaggerModel = $this->modelGenerator->generate($input);
         $this->assertEquals($expectedModel, $swaggerModel);

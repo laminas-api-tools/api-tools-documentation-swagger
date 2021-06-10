@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Configuration\ModuleUtils;
@@ -15,11 +9,14 @@ use Laminas\ApiTools\Provider\ApiToolsProviderInterface;
 use Laminas\ModuleManager\ModuleManager;
 use PHPUnit\Framework\TestCase;
 
+use function dirname;
+use function file_get_contents;
+use function json_decode;
+
+// phpcs:ignore WebimpressCodingStandard.NamingConventions.AbstractClass.Prefix
 abstract class BaseApiFactoryTest extends TestCase
 {
-    /**
-     * @var ApiFactory
-     */
+    /** @var ApiFactory */
     protected $apiFactory;
 
     public function setUp()
@@ -40,18 +37,20 @@ abstract class BaseApiFactoryTest extends TestCase
             include __DIR__ . '/TestAsset/module-config/module.config.php',
             $moduleUtils->reveal()
         );
-        $this->api = new Api($this->apiFactory->createApi('Test', 1));
+        $this->api        = new Api($this->apiFactory->createApi('Test', 1));
         parent::setUp();
     }
 
-    protected function getFixture($fixtureFilename)
+    /** @return mixed */
+    protected function getFixture(string $fixtureFilename)
     {
         $fixturePath = dirname(__FILE__) . '/TestAsset/fixtures/';
-        $fixture = file_get_contents($fixturePath . $fixtureFilename);
+        $fixture     = file_get_contents($fixturePath . $fixtureFilename);
         return json_decode($fixture, true);
     }
 
-    protected function assertFixture($fixtureFilename, $value)
+    /** @param mixed $value */
+    protected function assertFixture(string $fixtureFilename, $value): void
     {
         $expectedValue = $this->getFixture($fixtureFilename);
         $this->assertEquals($expectedValue, $value);

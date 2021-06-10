@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Configuration\ModuleUtils;
@@ -20,25 +14,18 @@ use PHPUnit\Framework\TestCase;
 
 class SwaggerUiControllerFactoryTest extends TestCase
 {
-    /**
-     * @var SwaggerUiControllerFactory
-     */
+    /** @var SwaggerUiControllerFactory */
     protected $factory;
 
-    /**
-     * @var ServiceManager
-     */
+    /** @var ServiceManager */
     protected $services;
 
     protected function setUp()
     {
-        $this->factory = new SwaggerUiControllerFactory();
+        $this->factory  = new SwaggerUiControllerFactory();
         $this->services = $services = new ServiceManager();
     }
 
-    /**
-     * @expectedException \Laminas\ServiceManager\Exception\ServiceNotCreatedException
-     */
     public function testExceptionThrownOnMissingApiCreatorClass()
     {
         $smFactory = $this->factory;
@@ -66,7 +53,7 @@ class SwaggerUiControllerFactoryTest extends TestCase
 
         $this->services->setService(ApiFactory::class, $apiFactory);
 
-        /** @var SwaggerUiControllerFactory $service */
+        /** @var SwaggerUiControllerFactory $smFactory */
         $smFactory = $this->factory;
         $this->assertInstanceOf(SwaggerUiControllerFactory::class, $smFactory);
 

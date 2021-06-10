@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategy;
@@ -17,6 +11,8 @@ use Laminas\Stdlib\Response as StdlibResponse;
 use Laminas\View\Renderer\JsonRenderer;
 use Laminas\View\ViewEvent;
 use PHPUnit\Framework\TestCase;
+
+use function method_exists;
 
 class SwaggerViewStrategyTest extends TestCase
 {
@@ -47,7 +43,7 @@ class SwaggerViewStrategyTest extends TestCase
         );
     }
 
-    public function testSelectRendererReturnsJsonRendererWhenSwaggerViewModelIsPresentInEvent()
+    public function testSelectRendererReturnsJsonRendererWhenSwaggerViewModelIsPresentInEvent(): ViewEvent
     {
         $event = new ViewEvent();
         $event->setName(ViewEvent::EVENT_RENDERER);
@@ -58,7 +54,7 @@ class SwaggerViewStrategyTest extends TestCase
         return $event;
     }
 
-    public function testSelectRendererReturnsNullWhenSwaggerViewModelIsNotPresentInEvent()
+    public function testSelectRendererReturnsNullWhenSwaggerViewModelIsNotPresentInEvent(): ViewEvent
     {
         $event = new ViewEvent();
         $event->setName(ViewEvent::EVENT_RENDERER);
@@ -70,8 +66,9 @@ class SwaggerViewStrategyTest extends TestCase
     /**
      * @depends testSelectRendererReturnsJsonRendererWhenSwaggerViewModelIsPresentInEvent
      */
-    public function testInjectResponseSetsContentTypeWhenJsonRendererWasSelectedBySelectRendererEvent($event)
-    {
+    public function testInjectResponseSetsContentTypeWhenJsonRendererWasSelectedBySelectRendererEvent(
+        ViewEvent $event
+    ): void {
         $response = new HttpResponse();
         $event->setResponse($response);
         $this->strategy->selectRenderer($event);
@@ -85,8 +82,9 @@ class SwaggerViewStrategyTest extends TestCase
     /**
      * @depends testSelectRendererReturnsNullWhenSwaggerViewModelIsNotPresentInEvent
      */
-    public function testInjectResponseDoesNothingWhenJsonRendererWasNotSelectedBySelectRendererEvent($event)
-    {
+    public function testInjectResponseDoesNothingWhenJsonRendererWasNotSelectedBySelectRendererEvent(
+        ViewEvent $event
+    ): void {
         $response = new HttpResponse();
         $event->setResponse($response);
         $this->strategy->selectRenderer($event);
@@ -98,7 +96,7 @@ class SwaggerViewStrategyTest extends TestCase
     /**
      * @depends testSelectRendererReturnsJsonRendererWhenSwaggerViewModelIsPresentInEvent
      */
-    public function testInjectResponseDoesNothingIfResponseIsNotHttpEnabled($event)
+    public function testInjectResponseDoesNothingIfResponseIsNotHttpEnabled(ViewEvent $event): void
     {
         $response = new StdlibResponse();
         $event->setResponse($response);

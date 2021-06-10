@@ -1,17 +1,25 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger\Model;
 
 use Laminas\ApiTools\Documentation\Swagger\Exception\UnmatchedTypeException;
 
+use function array_merge;
+use function json_decode;
+
 class ModelGenerator
 {
+    /**
+     * @var array
+     * @psalm-var array{
+     *     0: ObjectType,
+     *     1: NumberType,
+     *     2: IntegerType,
+     *     3: StringType,
+     *     4: BooleanType,
+     *     5: ArrayType
+     * }
+     */
     private $types;
 
     public function __construct()
@@ -29,8 +37,7 @@ class ModelGenerator
     /**
      * @param string $jsonInput
      * @return array
-     * @throws UnmatchedTypeException if unable to match any given $target to a
-     *     known type.
+     * @throws UnmatchedTypeException If unable to match any given $target to a known type.
      */
     public function generate($jsonInput)
     {
@@ -49,7 +56,7 @@ class ModelGenerator
     /**
      * @param mixed $target
      * @return TypeInterface
-     * @throws UnmatchedTypeException if unable to match $target to a known type.
+     * @throws UnmatchedTypeException If unable to match $target to a known type.
      */
     public function generateType($target)
     {

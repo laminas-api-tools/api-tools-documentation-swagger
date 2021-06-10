@@ -1,57 +1,51 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace LaminasTest\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Documentation\Swagger\Api;
 
+use function array_key_exists;
+use function array_keys;
+use function array_values;
+use function sort;
+
 class ApiTest extends BaseApiFactoryTest
 {
-    /**
-     * @var Api
-     */
+    /** @var Api */
     protected $api;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $fixture;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $result;
 
     public function setUp()
     {
         parent::setUp();
-        $this->api = new Api($this->apiFactory->createApi('Test', 1));
+        $this->api     = new Api($this->apiFactory->createApi('Test', 1));
         $this->fixture = $this->getFixture('swagger2.json');
-        $this->result = $this->api->toArray();
+        $this->result  = $this->api->toArray();
     }
 
-    public function assertEqualsArrays($expected, $actual, $message = '')
+    public function assertEqualsArrays(array $expected, array $actual, string $message = ''): void
     {
         sort($expected);
         sort($actual);
         $this->assertEquals($expected, $actual, $message);
     }
 
-    public function assertAllFields($field, callable $assert)
+    /** @psalm-param callable(mixed, mixed, string):void $assert */
+    public function assertAllFields(string $field, callable $assert): void
     {
         $expectedPaths = $this->fixture['paths'];
-        $paths = $this->result['paths'];
+        $paths         = $this->result['paths'];
         foreach ($expectedPaths as $expectedPathKey => $expectedPathValue) {
             foreach ($expectedPathValue as $expectedOperationKey => $expectedOperationValue) {
                 if (array_key_exists($field, $expectedOperationValue)) {
                     $expected = $expectedOperationValue[$field];
-                    $actual = $paths[$expectedPathKey][$expectedOperationKey][$field];
-                    $message = $expectedPathKey . '-' . $expectedOperationKey;
+                    $actual   = $paths[$expectedPathKey][$expectedOperationKey][$field];
+                    $message  = $expectedPathKey . '-' . $expectedOperationKey;
                     $assert($expected, $actual, $message);
                 }
             }
@@ -75,7 +69,7 @@ class ApiTest extends BaseApiFactoryTest
 
     public function testApiResultShouldHavePaths()
     {
-        $paths = array_keys($this->result['paths']);
+        $paths         = array_keys($this->result['paths']);
         $expectedPaths = array_keys($this->fixture['paths']);
         $this->assertEqualsArrays($expectedPaths, $paths);
     }
@@ -83,10 +77,10 @@ class ApiTest extends BaseApiFactoryTest
     public function testApiResultShouldHavePathsWithMethods()
     {
         $expectedPaths = $this->fixture['paths'];
-        $paths = $this->result['paths'];
+        $paths         = $this->result['paths'];
         foreach ($expectedPaths as $expectedPath => $expectedValue) {
             $expectedMethods = array_keys($expectedValue);
-            $methods = array_keys($paths[$expectedPath]);
+            $methods         = array_keys($paths[$expectedPath]);
             $this->assertEqualsArrays($expectedMethods, $methods, $expectedPath);
         }
     }
