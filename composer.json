@@ -1,7 +1,6 @@
 {
     "name": "laminas-api-tools/api-tools-documentation-swagger",
     "description": "Laminas API Tools API Swagger documentation module",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "api-tools",
@@ -10,22 +9,7 @@
         "swagger"
     ],
     "homepage": "https://api-tools.getlaminas.org",
-    "support": {
-        "docs": "https://api-tools.getlaminas.org/documentation",
-        "issues": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/issues",
-        "source": "https://github.com/laminas-api-tools/api-tools-documentation-swagger",
-        "rss": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laminas": {
-            "module": "Laminas\\ApiTools\\Documentation\\Swagger"
-        }
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3",
         "laminas-api-tools/api-tools-api-problem": "^1.2.1",
@@ -37,11 +21,22 @@
         "laminas/laminas-view": "^2.8.1",
         "laminas/laminas-zendframework-bridge": "^1.1"
     },
+    "replace": {
+        "zfcampus/zf-apigility-documentation-swagger": "^1.3.0"
+    },
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.2.0",
         "laminas/laminas-http": "^2.5.4",
         "laminas/laminas-stdlib": "^2.7.8 || ^3.0.1",
         "phpunit/phpunit": "^7.5.15"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laminas": {
+            "module": "Laminas\\ApiTools\\Documentation\\Swagger"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -63,7 +58,12 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zfcampus/zf-apigility-documentation-swagger": "^1.3.0"
+    "support": {
+        "issues": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas-api-tools/api-tools-documentation-swagger",
+        "docs": "https://api-tools.getlaminas.org/documentation",
+        "rss": "https://github.com/laminas-api-tools/api-tools-documentation-swagger/releases.atom"
     }
 }
