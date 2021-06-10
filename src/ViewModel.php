@@ -2,19 +2,18 @@
 
 namespace Laminas\ApiTools\Documentation\Swagger;
 
+use ArrayAccess;
 use Laminas\ApiTools\ContentNegotiation\JsonModel;
 use Traversable;
-
-use function array_key_exists;
 
 class ViewModel extends JsonModel
 {
     /**
-     * @return array|Traversable
+     * @return array|Traversable|ArrayAccess
      */
     public function getVariables()
     {
-        if (! array_key_exists('type', $this->variables) || empty($this->variables['type'])) {
+        if (empty($this->variables['type'] || ! $this->variables->offsetExists('type'))) {
             return $this->variables;
         }
 
