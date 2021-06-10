@@ -1,6 +1,6 @@
 /.idea/
+/.phpcs-cache
 /clover.xml
-/composer.lock
 /coveralls-upload.json
 /nbproject/
 /phpunit.xml

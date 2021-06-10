@@ -1,17 +1,18 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger\Model;
 
 use Laminas\ApiTools\Documentation\Swagger\Exception\UnmatchedTypeException;
 
+use function array_keys;
+use function array_merge;
+use function array_reduce;
+use function get_object_vars;
+use function is_object;
+
 class ObjectType implements TypeInterface
 {
+    /** @var ModelGenerator */
     private $modelGenerator;
 
     public function __construct(ModelGenerator $modelGenerator)
@@ -29,13 +30,13 @@ class ObjectType implements TypeInterface
 
     /**
      * {@inheritDoc}
-     * @throws UnmatchedTypeException if any given property cannot be resolved
-     *     to a known type.
+     *
+     * @throws UnmatchedTypeException If any given property cannot be resolved to a known type.
      */
     public function generate($target)
     {
         return [
-            'type' => 'object',
+            'type'       => 'object',
             'properties' => array_reduce(
                 array_keys(get_object_vars($target)),
                 function ($types, $key) use ($target) {
@@ -45,7 +46,7 @@ class ObjectType implements TypeInterface
                     );
                 },
                 []
-            )
+            ),
         ];
     }
 }

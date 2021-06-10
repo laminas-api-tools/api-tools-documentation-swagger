@@ -1,7 +1,6 @@
 # Swagger Documentation Provider for Laminas API Tools
 
-[![Build Status](https://travis-ci.com/laminas-api-tools/api-tools-documentation-swagger.svg)](https://travis-ci.com/laminas-api-tools/api-tools-documentation-swagger)
-[![Coverage Status](https://coveralls.io/repos/github/laminas-api-tools/api-tools-documentation-swagger/badge.svg)](https://coveralls.io/github/laminas-api-tools/api-tools-documentation-swagger)
+[![Build Status](https://github.com/laminas-api-tools/api-tools-documentation-swagger/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas-api-tools/api-tools-documentation-swagger/actions/workflows/continuous-integration.yml)
 
 ## Introduction
 

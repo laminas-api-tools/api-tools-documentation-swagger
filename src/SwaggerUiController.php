@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Documentation\ApiFactory;
@@ -14,14 +8,9 @@ use Laminas\View\Model\ViewModel;
 
 class SwaggerUiController extends AbstractActionController
 {
-    /**
-     * @var ApiFactory
-     */
+    /** @var ApiFactory */
     protected $apiFactory;
 
-    /**
-     * @param ApiFactory $apiFactory
-     */
     public function __construct(ApiFactory $apiFactory)
     {
         $this->apiFactory = $apiFactory;

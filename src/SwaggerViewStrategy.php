@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas-api-tools/api-tools-documentation-swagger for the canonical source repository
- * @copyright https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas-api-tools/api-tools-documentation-swagger/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\ApiTools\Documentation\Swagger;
 
 use Laminas\EventManager\EventManagerInterface;
@@ -14,23 +8,18 @@ use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\View\Renderer\JsonRenderer;
 use Laminas\View\ViewEvent;
 
+use function method_exists;
+
 class SwaggerViewStrategy implements ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
 
-    /**
-     * @var ViewModel
-     */
+    /** @var ViewModel */
     protected $model;
 
-    /**
-     * @var JsonRenderer
-     */
+    /** @var JsonRenderer */
     protected $renderer;
 
-    /**
-     * @param JsonRenderer $renderer
-     */
     public function __construct(JsonRenderer $renderer)
     {
         $this->renderer = $renderer;
@@ -46,7 +35,6 @@ class SwaggerViewStrategy implements ListenerAggregateInterface
     }
 
     /**
-     * @param ViewEvent $e
      * @return null|JsonRenderer
      */
     public function selectRenderer(ViewEvent $e)
@@ -60,9 +48,6 @@ class SwaggerViewStrategy implements ListenerAggregateInterface
         return $this->renderer;
     }
 
-    /**
-     * @param ViewEvent $e
-     */
     public function injectResponse(ViewEvent $e)
     {
         if (! $this->model instanceof ViewModel) {
