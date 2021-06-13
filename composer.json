@@ -11,7 +11,7 @@
     "homepage": "https://api-tools.getlaminas.org",
     "license": "BSD-3-Clause",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "laminas-api-tools/api-tools-api-problem": "^1.2.1",
         "laminas-api-tools/api-tools-content-negotiation": "^1.2.1",
         "laminas-api-tools/api-tools-documentation": "^1.2",
