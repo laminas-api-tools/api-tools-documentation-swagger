@@ -166,8 +166,6 @@ class Service extends BaseService
                 'description' => 'URL parameter ' . $paramSegmentName,
                 'type'        => 'string',
                 'required'    => $required,
-                'minimum'     => 0,
-                'maximum'     => 1,
             ];
         }
         return $templateParameters;
