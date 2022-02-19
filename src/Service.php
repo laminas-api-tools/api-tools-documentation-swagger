@@ -22,7 +22,7 @@ use function strtolower;
 class Service extends BaseService
 {
     public const DEFAULT_TYPE = 'string';
-    public const ARRAY_TYPE   = 'array';
+    public const ARRAY_TYPE = 'array';
 
     /** @var BaseService */
     protected $service;
@@ -32,7 +32,7 @@ class Service extends BaseService
 
     public function __construct(BaseService $service)
     {
-        $this->service        = $service;
+        $this->service = $service;
         $this->modelGenerator = new ModelGenerator();
     }
 
@@ -70,14 +70,14 @@ class Service extends BaseService
     private function getRouteWithReplacements(): string
     {
         // routes and parameter mangling ([:foo] will become {foo}
-        $search  = ['[', ']', '{/', '{:'];
+        $search = ['[', ']', '{/', '{:'];
         $replace = ['{', '}', '/{', '{'];
         return str_replace($search, $replace, $this->service->route);
     }
 
     private function isRestService(): bool
     {
-        return ! empty($this->service->routeIdentifierName);
+        return !empty($this->service->routeIdentifierName);
     }
 
     /**
@@ -85,12 +85,16 @@ class Service extends BaseService
      */
     private function getRestPaths(string $route): array
     {
-        $entityOperations     = $this->getEntityOperationsData($route);
+        $entityOperations = $this->getEntityOperationsData($route);
         $collectionOperations = $this->getCollectionOperationsData($route);
-        $collectionPath       = str_replace('/{' . $this->service->routeIdentifierName . '}', '', $route);
+        $collectionPath = str_replace(
+            '/{' . $this->service->routeIdentifierName . '}', '', $route
+        );
         if ($collectionPath === $route) {
             return [
-                $collectionPath => array_merge($collectionOperations, $entityOperations),
+                $collectionPath => array_merge(
+                    $collectionOperations, $entityOperations
+                ),
             ];
         }
         return [
@@ -109,7 +113,7 @@ class Service extends BaseService
     private function getEntityOperationsData(string $route): array
     {
         $urlParameters = $this->getURLParametersRequired($route);
-        $operations    = $this->service->getEntityOperations();
+        $operations = $this->service->getEntityOperations();
         return $this->getOperationsData($operations, $urlParameters);
     }
 
@@ -124,20 +128,20 @@ class Service extends BaseService
     private function getOtherOperationsData(string $route): array
     {
         $urlParameters = $this->getURLParametersRequired($route);
-        $operations    = $this->service->operations;
+        $operations = $this->service->operations;
         return $this->getOperationsData($operations, $urlParameters);
     }
 
-    private function getOperationsData(array $operations, array $urlParameters): array
-    {
+    private function getOperationsData(array $operations, array $urlParameters
+    ): array {
         $operationsData = [];
         foreach ($operations as $operation) {
-            $method     = $this->getMethodFromOperation($operation);
+            $method = $this->getMethodFromOperation($operation);
             $parameters = array_values($urlParameters);
             if ($this->isMethodPostPutOrPatch($method)) {
                 $parameters[] = $this->getPostPatchPutBodyParameter();
             }
-            $pathOperation           = $this->getPathOperation($operation, $parameters);
+            $pathOperation = $this->getPathOperation($operation, $parameters);
             $operationsData[$method] = $pathOperation;
         }
         return $operationsData;
@@ -166,8 +170,6 @@ class Service extends BaseService
                 'description' => 'URL parameter ' . $paramSegmentName,
                 'type'        => 'string',
                 'required'    => $required,
-                'minimum'     => 0,
-                'maximum'     => 1,
             ];
         }
         return $templateParameters;
@@ -196,8 +198,8 @@ class Service extends BaseService
         return strtolower($operation->getHttpMethod());
     }
 
-    private function getPathOperation(Operation $operation, array $parameters): array
-    {
+    private function getPathOperation(Operation $operation, array $parameters
+    ): array {
         return $this->cleanEmptyValues([
             'tags'        => [$this->service->getName()],
             'description' => $operation->getDescription(),
@@ -209,10 +211,10 @@ class Service extends BaseService
 
     private function getResponsesFromOperation(Operation $operation): array
     {
-        $responses           = [];
+        $responses = [];
         $responseStatusCodes = $operation->getResponseStatusCodes();
         foreach ($responseStatusCodes as $responseStatusCode) {
-            $code             = intval($responseStatusCode['code']);
+            $code = intval($responseStatusCode['code']);
             $responses[$code] = $this->cleanEmptyValues([
                 'description' => $responseStatusCode['message'],
                 'schema'      => $this->getResponseSchema($operation, $code),
@@ -229,7 +231,9 @@ class Service extends BaseService
     private function getResponseSchema(Operation $operation, int $code): ?array
     {
         if ($code === 200 || $code === 201) {
-            $schema = $this->modelGenerator->generate($operation->getResponseDescription());
+            $schema = $this->modelGenerator->generate(
+                $operation->getResponseDescription()
+            );
 
             return $schema === false ? null : $schema;
         }
@@ -239,12 +243,14 @@ class Service extends BaseService
 
     private function getDefinitions(): array
     {
-        if (! $this->serviceContainsPostPutOrPatchMethod()) {
+        if (!$this->serviceContainsPostPutOrPatchMethod()) {
             return [];
         }
-        $modelFromFields          = $this->getModelFromFields();
+        $modelFromFields = $this->getModelFromFields();
         $modelFromPostDescription = $this->getModelFromFirstPostDescription();
-        $model                    = array_replace_recursive($modelFromFields, $modelFromPostDescription);
+        $model = array_replace_recursive(
+            $modelFromFields, $modelFromPostDescription
+        );
         return [$this->service->getName() => $model];
     }
 
@@ -264,7 +270,7 @@ class Service extends BaseService
         $required = $properties = [];
 
         foreach ($this->getFieldsForDefinitions() as $field) {
-            if (! $field instanceof Field) {
+            if (!$field instanceof Field) {
                 continue;
             }
 
@@ -284,7 +290,7 @@ class Service extends BaseService
     private function getModelFromFirstPostDescription(): array
     {
         $firstPostDescription = $this->getFirstPostRequestDescription();
-        if (! $firstPostDescription) {
+        if (!$firstPostDescription) {
             return [];
         }
         return $this->modelGenerator->generate($firstPostDescription) ?: [];
@@ -322,8 +328,8 @@ class Service extends BaseService
 
     private function getFieldProperties(Field $field): array
     {
-        $type               = $this->getFieldType($field);
-        $properties         = [];
+        $type = $this->getFieldType($field);
+        $properties = [];
         $properties['type'] = $type;
         if ($type === self::ARRAY_TYPE) {
             $properties['items'] = ['type' => self::DEFAULT_TYPE];
@@ -334,7 +340,8 @@ class Service extends BaseService
 
     private function getFieldType(Field $field): string
     {
-        return method_exists($field, 'getFieldType') && ! empty($field->getFieldType())
+        return method_exists($field, 'getFieldType')
+        && !empty($field->getFieldType())
             ? $field->getFieldType()
             : self::DEFAULT_TYPE;
     }
@@ -343,7 +350,10 @@ class Service extends BaseService
     {
         $entityOperations = $this->service->getEntityOperations();
         if (is_array($entityOperations)) {
-            return array_merge($this->service->getOperations(), $this->service->getEntityOperations());
+            return array_merge(
+                $this->service->getOperations(),
+                $this->service->getEntityOperations()
+            );
         }
         return $this->service->getOperations();
     }
@@ -354,7 +364,7 @@ class Service extends BaseService
     private function cleanEmptyValues(array $data): array
     {
         return array_filter($data, function ($item) {
-            return ! empty($item);
+            return !empty($item);
         });
     }
 }
