@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\ApiTools\Documentation\Swagger\Model;
 
 use function is_int;

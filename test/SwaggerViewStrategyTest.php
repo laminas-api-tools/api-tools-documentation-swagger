@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Documentation\Swagger\SwaggerViewStrategy;

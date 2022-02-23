@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\ApiTools\Documentation\Swagger;
 
 use Laminas\ApiTools\Documentation\ApiFactory;
