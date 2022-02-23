@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'Test\\V1\\Rest\\FooBar\\Controller'           => [
         'collection'  => [

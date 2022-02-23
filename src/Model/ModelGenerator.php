@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\ApiTools\Documentation\Swagger\Model;
 
 use Laminas\ApiTools\Documentation\Swagger\Exception\UnmatchedTypeException;
 
 use function array_merge;
+use function is_string;
 use function json_decode;
 
 class ModelGenerator
@@ -41,6 +44,10 @@ class ModelGenerator
      */
     public function generate($jsonInput)
     {
+        if (! is_string($jsonInput)) {
+            return false;
+        }
+
         $target = json_decode($jsonInput);
 
         if (! $target) {

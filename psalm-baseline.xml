@@ -20,6 +20,9 @@
     </MixedArrayAccess>
   </file>
   <file src="src/Model/ModelGenerator.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>is_string($jsonInput)</code>
+    </DocblockTypeContradiction>
     <MixedAssignment occurrences="1">
       <code>$target</code>
     </MixedAssignment>
@@ -86,9 +89,6 @@
       <code>Service</code>
       <code>Service</code>
     </PropertyNotSetInConstructor>
-    <RedundantCondition occurrences="1">
-      <code>method_exists($field, 'getFieldType')</code>
-    </RedundantCondition>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_array($entityOperations)</code>
     </RedundantConditionGivenDocblockType>
@@ -212,8 +212,7 @@
       <code>$this-&gt;fixture['paths']</code>
       <code>$this-&gt;result['paths']</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="3">
-      <code>$expectedOperationValue[$field]</code>
+    <MixedArrayAccess occurrences="2">
       <code>$paths[$expectedPathKey]</code>
       <code>$paths[$expectedPath]</code>
     </MixedArrayAccess>
