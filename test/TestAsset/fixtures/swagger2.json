@@ -80,8 +80,6 @@
                     {
                         "description": "URL parameter boo_baz_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "boo_baz_id",
                         "required": true,
                         "type": "string"
@@ -119,8 +117,6 @@
                     {
                         "description": "URL parameter boo_baz_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "boo_baz_id",
                         "required": true,
                         "type": "string"
@@ -152,8 +148,6 @@
                     {
                         "description": "URL parameter boo_baz_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "boo_baz_id",
                         "required": true,
                         "type": "string"
@@ -199,8 +193,6 @@
                     {
                         "description": "URL parameter boo_baz_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "boo_baz_id",
                         "required": true,
                         "type": "string"
@@ -351,8 +343,6 @@
                     {
                         "description": "URL parameter foo_bar_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "foo_bar_id",
                         "required": true,
                         "type": "string"
@@ -390,8 +380,6 @@
                     {
                         "description": "URL parameter foo_bar_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "foo_bar_id",
                         "required": true,
                         "type": "string"
@@ -423,8 +411,6 @@
                     {
                         "description": "URL parameter foo_bar_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "foo_bar_id",
                         "required": true,
                         "type": "string"
@@ -476,8 +462,6 @@
                     {
                         "description": "URL parameter foo_bar_id",
                         "in": "path",
-                        "maximum": 1,
-                        "minimum": 0,
                         "name": "foo_bar_id",
                         "required": true,
                         "type": "string"
@@ -584,9 +568,7 @@
                         "name": "foo_bar_collection_id",
                         "description": "URL parameter foo_bar_collection_id",
                         "type": "string",
-                        "required": true,
-                        "minimum": 0,
-                        "maximum": 1
+                        "required": true
                     }],
                 "produces": ["application/vnd.test.v1+json", "application/hal+json", "application/json"],
                 "responses": {
@@ -611,9 +593,7 @@
                         "name": "foo_bar_collection_id",
                         "description": "URL parameter foo_bar_collection_id",
                         "type": "string",
-                        "required": true,
-                        "minimum": 0,
-                        "maximum": 1
+                        "required": true
                     }, {
                         "in": "body",
                         "name": "body",
@@ -657,9 +637,7 @@
                         "name": "foo_bar_collection_id",
                         "description": "URL parameter foo_bar_collection_id",
                         "type": "string",
-                        "required": true,
-                        "minimum": 0,
-                        "maximum": 1
+                        "required": true
                     }, {
                         "in": "body",
                         "name": "body",
@@ -703,9 +681,7 @@
                         "name": "foo_bar_collection_id",
                         "description": "URL parameter foo_bar_collection_id",
                         "type": "string",
-                        "required": true,
-                        "minimum": 0,
-                        "maximum": 1
+                        "required": true
                     }],
                 "produces": ["application/vnd.test.v1+json", "application/hal+json", "application/json"],
                 "responses": {
