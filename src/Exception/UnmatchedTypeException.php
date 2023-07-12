@@ -6,7 +6,6 @@ namespace Laminas\ApiTools\Documentation\Swagger\Exception;
 
 use RuntimeException;
 
-use function get_class;
 use function is_object;
 use function sprintf;
 use function var_export;
@@ -21,7 +20,7 @@ class UnmatchedTypeException extends RuntimeException implements ExceptionInterf
     {
         return new self(sprintf(
             'Unable to generate type for value (%s); perhaps the value is invalid?',
-            is_object($type) ? get_class($type) : var_export($type, true)
+            is_object($type) ? $type::class : var_export($type, true)
         ));
     }
 }

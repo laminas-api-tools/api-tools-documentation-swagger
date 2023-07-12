@@ -39,21 +39,15 @@ return [
         ],
     ],
     'service_manager'               => [
-        // Legacy Zend Framework aliases
-        'aliases'   => [
-            \ZF\Apigility\Documentation\Swagger\SwaggerViewStrategy::class => SwaggerViewStrategy::class,
-        ],
         'factories' => [
             SwaggerViewStrategy::class => SwaggerViewStrategyFactory::class,
         ],
     ],
     'controllers'                   => [
-        // Legacy Zend Framework aliases
-        'aliases'   => [
-            \ZF\Apigility\Documentation\Swagger\SwaggerUi::class => SwaggerUi::class,
-        ],
         'factories' => [
-            SwaggerUi::class => SwaggerUiControllerFactory::class,
+            // Legacy naming that omits Controller suffix
+            'Laminas\ApiTools\Documentation\Swagger\SwaggerUi' => SwaggerUiControllerFactory::class,
+            SwaggerUiController::class                         => SwaggerUiControllerFactory::class,
         ],
     ],
     'view_manager'                  => [
