@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Laminas\ApiTools\Documentation\Swagger;
 
-use Interop\Container\ContainerInterface;
 use Laminas\ApiTools\Documentation\ApiFactory;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerInterface;
 
 use function sprintf;
 
